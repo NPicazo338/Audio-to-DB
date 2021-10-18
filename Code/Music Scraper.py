@@ -48,7 +48,7 @@ def download_songs(song_links):
 		downsoup = bs(pop_req.text, 'html.parser')
 
 		#dl req
-		down_req = req.get(str(downsoup.find('a', {'class': 'download'}).get('href')))
+		down_res = req.get(str(downsoup.find('a', {'class': 'download'}).get('href')))
 
 		#song name
 		song_name = downsoup.find('div', {'class': 'text'}).find('h2').text
@@ -64,7 +64,7 @@ def download_songs(song_links):
 		try:
 			with open(file_name + '.mp3', 'wb') as f:
 
-				f.write(down_link.content)
+				f.write(down_res.content)
 
 		except:
 			print('Could not download song')
